@@ -84,21 +84,21 @@
         /* СТИЛИ СЕКЦИИ ПОРТФОЛИО С МИНИ-ГАЛЕРЕЕЙ */
         .portfolio-section { padding: 100px 0; background-color: #121619; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .portfolio-grid { 
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 30px; 
-    align-items: start; /* КРИТИЧНО: запрещает карточкам на новых строках растягиваться во всю высоту */
-}
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; 
+            align-items: start; /* КРИТИЧНО: запрещает карточкам на новых строках растягиваться во всю высоту */
+        }
 
-.portfolio-item { 
-    background-color: #1a2024; 
-    border: 1px solid rgba(255, 255, 255, 0.05); 
-    border-radius: 8px; 
-    overflow: hidden; 
-    display: flex; 
-    flex-direction: column; 
-    height: 100%; /* Карточки в одном ряду будут одинаковой высоты */
-}
+        .portfolio-item { 
+            background-color: #1a2024; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; /* Карточки в одном ряду будут одинаковой высоты */
+        }
         .portfolio-item:hover { transform: translateY(-3px); border-color: #4a5763; }
         
         /* Блок галереи */
@@ -112,19 +112,17 @@
         /* Сетка миниатюр под главным фото */
         .thumb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background-color: rgba(255,255,255,0.05); padding: 2px; }
         .thumb-img { height: 70px; overflow: hidden; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); }
-.thumb-img:hover { 
-    filter: brightness(1.2); 
-    border-color: rgba(255, 255, 255, 0.4);
-}
-.thumb-img.active { 
-    border: 2px solid #00a859; 
-}
-/* Убираем лишнее перекрытие рамки */
-.thumb-img.active::after { 
-    display: none; 
-}
-        .thumb-img.active::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #00a859; box-sizing: border-box; }
-        .thumb-img img { width: 100%; height: 100%; object-fit: cover; }
+        .thumb-img:hover { 
+            filter: brightness(1.2); 
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        .thumb-img.active { 
+            border: 2px solid #00a859; 
+        }
+        /* Убираем лишнее перекрытие рамки */
+        .thumb-img.active::after { 
+            display: none; 
+        }
         
         .portfolio-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
         .portfolio-content h3 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; }
@@ -232,6 +230,44 @@
             .calc-box { padding: 30px 20px; }
             .services-grid { grid-template-columns: 1fr; }
             .services-header h2 { font-size: 32px; }
+        }
+        
+        /* СТИЛИ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (ИСПРАВЛЕНИЕ ОБРЕЗКИ БУКВ) */
+        @media (max-width: 480px) {
+            .header-nav {
+                height: 70px; /* Уменьшаем общую высоту шапки */
+            }
+            .logo-text {
+                font-size: 24px; /* Уменьшаем буквы МАСШТАБ, чтобы они помещались на любых телефонах */
+            }
+            .header-phone {
+                padding: 6px 12px; /* Делаем кнопку телефона более компактной */
+                font-size: 13px;
+            }
+            .hero {
+                padding-top: 80px; /* Корректируем верхний отступ под новую высоту шапки */
+            }
+            .hero h1 .main-brand {
+                font-size: 36px; /* Уменьшаем заголовок на главном экране */
+            }
+            .hero h1 {
+                font-size: 22px;
+            }
+            .btn {
+                padding: 14px 24px;
+                font-size: 13px;
+            }
+        }
+
+        /* Коррекция для самых узких экранов (смартфоны типа iPhone SE) */
+        @media (max-width: 360px) {
+            .logo-text {
+                font-size: 20px;
+            }
+            .header-phone {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -376,7 +412,7 @@
         </div>
     </section>
 
-<section class="portfolio-section" id="portfolio" style="padding: 100px 0; background-color: #121619;">
+    <section class="portfolio-section" id="portfolio" style="padding: 100px 0; background-color: #121619;">
         <div class="container">
             <div class="services-header">
                 <h2 class="metal-text">Выполненные <span class="green-accent">Объекты</span></h2>
@@ -421,9 +457,43 @@
 
                 <div class="portfolio-item">
                     <div class="portfolio-gallery">
+                        <div class="portfolio-badge">Под Ключ</div>
+                        <div class="main-img-holder">
+                            <img src="images/d-1.jpg" alt="ЖК Доминанта" class="gallery-main">
+                        </div>
+                        <div class="thumb-grid">
+                            <div class="thumb-img active" onclick="switchGalleryImage(this, 'images/d-1.jpg')">
+                                <img src="images/d-1.jpg" alt="Фото 1">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-2.jpg')">
+                                <img src="images/d-2.jpg" alt="Фото 2">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-3.jpg')">
+                                <img src="images/d-3.jpg" alt="Фото 3">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-4.jpg')">
+                                <img src="images/d-4.jpg" alt="Фото 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content" style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3>ЖК Доминанта</h3>
+                        <p class="portfolio-desc">Чистовая отделка под ключ по дизайн-проекту. Выполнена идеальная подготовка стен под высококачественную покраску, укладка кварц-винила и керамогранита. Смета и клининг в подарок!</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-spec">Тип работ: <strong>Под ключ</strong></div>
+                            <div class="meta-spec">Площадь: <strong>70 кв. м</strong></div>
+                            <div class="meta-spec">Срок сдачи: <strong>2 месяца</strong></div>
+                            <div class="meta-spec">Бюджет: <strong>2 млн.руб. ₽</strong></div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: auto;" onclick="openCalcWithExactParams('full-outfit', 70)">Смотреть смету</button>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-gallery">
                         <div class="portfolio-badge">Под ключ</div>
                         <div class="main-img-holder">
-                            <img src="images/k-1.jpg" alt="ЖК Клаб=Хаус" class="gallery-main">
+                            <img src="images/k-1.jpg" alt="ЖК Клаб-Хаус" class="gallery-main">
                         </div>
                         <div class="thumb-grid">
                             <div class="thumb-img active" onclick="switchGalleryImage(this, 'images/k-1.jpg')">
@@ -453,8 +523,10 @@
                     </div>
                 </div>
 
-            </div> </div> 
-</section>
+            </div> 
+        </div> 
+    </section>
+
     <div class="modal" id="calcModal">
         <div class="calc-box">
             <span class="close-btn" id="closeCalcBtn">&times;</span>
@@ -534,19 +606,15 @@
     <script>
         // СКРИПТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ФОТО В ГАЛЕРЕЕ ПОРТФОЛИО
         function switchGalleryImage(thumbnailElement, imageSrc) {
-            // Находим блок галереи, в котором находится эта миниатюра
             const gallery = thumbnailElement.closest('.portfolio-gallery');
-            
-            // Находим главное фото внутри этой галереи и меняем путь
             const mainImg = gallery.querySelector('.gallery-main');
-            mainImg.style.opacity = '0.3'; // Небольшой визуальный эффект угасания при смене
+            mainImg.style.opacity = '0.3';
             
             setTimeout(() => {
                 mainImg.src = imageSrc;
                 mainImg.style.opacity = '1';
             }, 100);
 
-            // Убираем класс active у всех миниатюр в этой карточке и добавляем текущей
             const thumbs = gallery.querySelectorAll('.thumb-img');
             thumbs.forEach(t => t.classList.remove('active'));
             thumbnailElement.classList.add('active');
