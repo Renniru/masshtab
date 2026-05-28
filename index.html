@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Строительная компания МАСШТАБ | Строительство и отделка под ключ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #121619; color: #e0e6ed; overflow-x: hidden; }
+        html { scroll-behavior: smooth; } /* Плавный скролл по якорным ссылкам */
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header { background-color: rgba(18, 22, 25, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; height: 100px; }
+        
+        /* Единый металлический стиль */
+        .metal-text {
+            background: linear-gradient(145deg, #ffffff 10%, #a3b8cc 50%, #4a5763 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-text { font-size: 52px; font-weight: 900; text-transform: uppercase; line-height: 1; filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.8)); }
+        .green-accent { color: #00a859 !important; -webkit-text-fill-color: #00a859 !important; }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { color: #a3b8cc; text-decoration: none; font-size: 15px; font-weight: 600; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: #00a859; }
+
+        .header-phone { color: #fff; text-decoration: none; font-weight: 700; border: 2px solid #00a859; padding: 8px 18px; border-radius: 4px; transition: all 0.3s; }
+        .header-phone:hover { background-color: #00a859; }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; background: radial-gradient(circle at center, #1a2329 0%, #121619 100%); }
+        .hero h1 { font-size: 64px; font-weight: 900; line-height: 1.1; margin-bottom: 30px; text-transform: uppercase; }
+        
+        .hero h1 .metal-block { display: block; }
+        .hero h1 .main-brand { font-size: 76px; margin-bottom: 10px; }
+        
+        .highlight { color: #00a859 !important; -webkit-text-fill-color: #00a859 !important; }
+        
+        .hero p { font-size: 20px; color: #a3b8cc; margin-bottom: 45px; max-width: 750px; }
+        .btn { display: inline-block; padding: 18px 36px; font-weight: 700; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: 0.3s; text-align: center; }
+        .btn-primary { background-color: #00a859; color: #fff; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0, 168, 89, 0.4); }
+        .btn-secondary { background: transparent; color: #ffffff; border: 2px solid #4a5763; }
+        .btn-secondary:hover { border-color: #00a859; color: #00a859; transform: translateY(-2px); }
+
+        /* СТИЛИ СЕКЦИИ О КОМПАНИИ */
+        .about-section { padding: 100px 0; background-color: #161b1f; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .about-wrapper { display: flex; gap: 60px; align-items: center; }
+        .about-text { flex: 1; }
+        .about-text h2 { font-size: 42px; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; }
+        .about-text p { font-size: 18px; color: #a3b8cc; line-height: 1.6; margin-bottom: 20px; }
+        
+        .about-stats { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .stat-card { background-color: #121619; border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 6px; text-align: center; transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #00a859; }
+        .stat-number { font-size: 48px; font-weight: 900; color: #fff; margin-bottom: 10px; display: block; }
+
+        /* СТИЛИ СЕКЦИИ УСЛУГИ */
+        .services-section { padding: 100px 0; background-color: #121619; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .services-header { text-align: center; margin-bottom: 60px; }
+        .services-header h2 { font-size: 42px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; }
+        .services-header p { font-size: 18px; color: #a3b8cc; max-width: 700px; margin: 0 auto; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-item { background-color: #1a2024; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 40px 30px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .service-item:hover { transform: translateY(-5px); border-color: #00a859; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        
+        .service-icon { width: 50px; height: 50px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; background-color: rgba(0, 168, 89, 0.1); border-radius: 6px; color: #00a859; font-size: 24px; font-weight: bold; }
+        .service-item h3 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .service-item p { font-size: 15px; color: #a3b8cc; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
+        .service-price { font-size: 14px; font-weight: 700; color: #00a859; text-transform: uppercase; letter-spacing: 1px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .service-link { color: #fff; text-decoration: none; font-size: 13px; background: #2c353c; padding: 6px 12px; border-radius: 4px; transition: background 0.2s; cursor: pointer; }
+        .service-item:hover .service-link { background: #00a859; }
+
+        /* СТИЛИ СЕКЦИИ ЗАСТРОЙЩИКАМ (B2B) */
+        .b2b-section { padding: 100px 0; background-color: #161b1f; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .b2b-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 50px; }
+        .b2b-card { background-color: #121619; border-left: 4px solid #00a859; padding: 30px; border-radius: 0 8px 8px 0; border-top: 1px solid rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .b2b-card h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; text-transform: uppercase; }
+        .b2b-card p { font-size: 15px; color: #a3b8cc; line-height: 1.6; }
+
+        /* СТИЛИ СЕКЦИИ ПОРТФОЛИО С МИНИ-ГАЛЕРЕЕЙ */
+        .portfolio-section { padding: 100px 0; background-color: #121619; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .portfolio-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px; 
+    align-items: start; /* КРИТИЧНО: запрещает карточкам на новых строках растягиваться во всю высоту */
+}
+
+.portfolio-item { 
+    background-color: #1a2024; 
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 8px; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; /* Карточки в одном ряду будут одинаковой высоты */
+}
+        .portfolio-item:hover { transform: translateY(-3px); border-color: #4a5763; }
+        
+        /* Блок галереи */
+        .portfolio-gallery { width: 100%; display: flex; flex-direction: column; background-color: #121619; position: relative; }
+        .portfolio-badge { position: absolute; top: 20px; left: 20px; background-color: #00a859; color: #fff; padding: 6px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; border-radius: 3px; letter-spacing: 0.5px; z-index: 10; }
+        
+        /* Главное большое фото */
+        .main-img-holder { width: 100%; height: 320px; overflow: hidden; border-bottom: 2px solid rgba(255, 255, 255, 0.05); }
+        .main-img-holder img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease-in-out; }
+        
+        /* Сетка миниатюр под главным фото */
+        .thumb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background-color: rgba(255,255,255,0.05); padding: 2px; }
+        .thumb-img { height: 70px; overflow: hidden; cursor: pointer; transition: all 0.2s; position: relative; border: 1px solid rgba(255, 255, 255, 0.1); }
+.thumb-img:hover { 
+    filter: brightness(1.2); 
+    border-color: rgba(255, 255, 255, 0.4);
+}
+.thumb-img.active { 
+    border: 2px solid #00a859; 
+}
+/* Убираем лишнее перекрытие рамки */
+.thumb-img.active::after { 
+    display: none; 
+}
+        .thumb-img.active::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #00a859; box-sizing: border-box; }
+        .thumb-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .portfolio-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .portfolio-content h3 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 15px; text-transform: uppercase; }
+        .portfolio-desc { font-size: 15px; color: #a3b8cc; line-height: 1.6; margin-bottom: 25px; }
+        
+        .portfolio-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+        .meta-spec { font-size: 14px; color: #a3b8cc; }
+        .meta-spec strong { color: #fff; display: block; margin-top: 2px; font-size: 16px; }
+
+        /* ОБЩИЕ СТИЛИ ДЛЯ МОДАЛЬНЫХ ОКОН */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(10, 12, 14, 0.85);
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+
+        .calc-box {
+            background-color: #1a2024;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 28px; color: #a3b8cc;
+            cursor: pointer; transition: color 0.3s;
+        }
+        .close-btn:hover { color: #00a859; }
+
+        .calc-title { font-size: 24px; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 0.5px; }
+        
+        .calc-step { display: none; }
+        .calc-step.active { display: block; }
+
+        .step-info { font-size: 13px; color: #00a859; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
+        .step-question { font-size: 18px; font-weight: 600; margin-bottom: 20px; color: #fff; }
+
+        /* Поля ввода и формы */
+        .options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .option-card {
+            background-color: #121619;
+            border: 2px solid #2c353c;
+            border-radius: 6px;
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+        .option-card:hover { border-color: #4a5763; }
+        .option-card.selected { border-color: #00a859; background-color: rgba(0, 168, 89, 0.03); }
+        .option-label { font-size: 16px; font-weight: 600; color: #e0e6ed; }
+        
+        .input-box { margin-bottom: 20px; }
+        .input-label { display: block; font-size: 14px; font-weight: 600; color: #a3b8cc; margin-bottom: 8px; text-transform: uppercase; }
+        
+        .calc-input {
+            width: 100%; background-color: #121619;
+            border: 2px solid #2c353c; border-radius: 6px;
+            padding: 16px; color: #fff; font-size: 16px; font-weight: 600;
+            outline: none; transition: border-color 0.3s;
+        }
+        .calc-input:focus { border-color: #00a859; }
+
+        .calc-nav { display: flex; justify-content: space-between; gap: 15px; margin-top: 20px; }
+        .btn-calc { padding: 14px 28px; font-size: 14px; cursor: pointer; }
+
+        /* Итоговый экран */
+        .result-box { text-align: center; padding: 20px 0; }
+        .result-price { font-size: 36px; font-weight: 900; color: #fff; margin: 15px 0 25px; }
+
+        /* Адаптивность */
+        @media (max-width: 1100px) {
+            .logo-text { font-size: 40px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 44px; }
+            .hero h1 .brand-name { font-size: 52px; }
+        }
+        @media (max-width: 992px) {
+            .about-wrapper { flex-direction: column; gap: 40px; }
+            .about-text { text-align: center; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .b2b-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+        @media (max-width: 768px) {
+            .logo-text { font-size: 32px; }
+            .hero h1 { font-size: 34px; }
+            .hero h1 .brand-name { font-size: 40px; }
+            .hero p { font-size: 17px; }
+            .calc-box { padding: 30px 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .services-header h2 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-nav container">
+            <a href="/" style="text-decoration: none;">
+                <div class="logo-text metal-text">МАС<span class="green-accent">ШТ</span>АБ</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">О компании</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#b2b">Застройщикам</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <a href="tel:+79199282678" class="header-phone">+7 (919) 928-26-78</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="metal-text">
+                    <span class="metal-block main-brand">СК МАС<span class="green-accent">ШТ</span>АБ</span>
+                    <span class="metal-block">Строительство и отделочные работы</span>
+                    <span class="highlight">под ключ</span>
+                </h1>
+                <p>Реализуем проекты для крупных девелоперов, муниципальных служб и частных лиц. Берём на себя всё: от проектирования и возведения зданий до высококлассной малярно-финишной отделки в строго установленные сроки.</p>
+                <div style="display: flex; gap: 20px;">
+                    <button id="openCalcBtn" class="btn btn-primary">Рассчитать стоимость</button>
+                    <a href="#presentation" class="btn btn-secondary">Скачать презентацию PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                
+                <div class="about-text">
+                    <h2 class="metal-text">О компании <span class="green-accent">МАСШТАБ</span></h2>
+                    <p>Строительная компания МАСШТАБ — это команда профессионалов, специализирующаяся на реализации строительных и отделочных проектов любого уровня сложности. Мы осуществляем полный цикл работ: от разработки проектной документации и закладки фундамента до финальной высококлассной отделки помещений.</p>
+                    <p>Мы заработали репутацию надежного партнера благодаря строгому соблюдению строительных норм (СНиП, ГОСТ), фиксированным сметам и сдаче объектов точно в запланированные сроки. Работаем как с крупными коммерческими заказчиками и девелоперами, так и с частными лицами.</p>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-number green-accent">10+</span>
+                        <span style="font-size: 14px; color: #a3b8cc; font-weight: 600; text-transform: uppercase;">Лет на рынке</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">150+</span>
+                        <span style="font-size: 14px; color: #a3b8cc; font-weight: 600; text-transform: uppercase;">Готовых объектов</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">25+</span>
+                        <span style="font-size: 14px; color: #a3b8cc; font-weight: 600; text-transform: uppercase;">Опытных мастеров</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number green-accent">100%</span>
+                        <span style="font-size: 14px; color: #a3b8cc; font-weight: 600; text-transform: uppercase;">Гарантия качества</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="metal-text">Наши <span class="green-accent">Услуги</span></h2>
+                <p>Выполняем полный комплекс строительных и отделочных работ любой сложности с гарантией качества и соблюдением сроков.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">✓</div>
+                    <h3>Чистовая отделка под ключ</h3>
+                    <p>Высококачественный финишный ремонт жилых и коммерческих помещений. Включает малярные работы, укладку напольных покрытий, монтаж электрики и сантехники с материалами премиального качества.</p>
+                    <div class="service-price">
+                        <span>от 27 000 ₽ / м²</span>
+                        <span class="service-link" onclick="openCalcWithType('painting')">Расчет</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">⚙</div>
+                    <h3>Отделка без материала</h3>
+                    <p>Профессиональное выполнение всего комплекса чистовых отделочных работ по вашему готовому дизайн-проекту с использованием строительных материалов заказчика. Строгий контроль СНиП.</p>
+                    <div class="service-price">
+                        <span>от 17 000 ₽ / м²</span>
+                        <span class="service-link" onclick="openCalcWithType('full-outfit')">Расчет</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">⌂</div>
+                    <h3>Строительство домов</h3>
+                    <p>Капитальное строительство индивидуальных жилых домов, коттеджей и коммерческих зданий. От фундамента до возведения кровли и подведения коммуникаций.</p>
+                    <div class="service-price">
+                        <span>от 100 000 ₽ / м²</span>
+                        <span class="service-link" onclick="openCalcWithType('construction')">Расчет</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="b2b-section" id="b2b">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="metal-text">Застройщикам и <span class="green-accent">Девелоперам</span></h2>
+                <p>Надежный подрядчик для масштабных проектов. Обеспечиваем бесперебойный цикл работ на крупных объектах с безупречным юридическим и техническим сопровождением.</p>
+            </div>
+            
+            <div class="b2b-grid">
+                <div class="b2b-card">
+                    <h3>Масштабы и темпы работ</h3>
+                    <p>Располагаем укомплектованным штатом линейного персонала и механизированными бригадами. Готовы оперативно заходить на большие объемы (ЖК, апартаменты, офисные центры) без потери скорости.</p>
+                </div>
+                <div class="b2b-card">
+                    <h3>Строго по СНиП и ГОСТ</h3>
+                    <p>Каждый этап контролируется сертифицированными прорабами. Сдаем работы инспекторам технадзора с первого предъявления. Ведем и вовремя предоставляем всю исполнительную документацию.</p>
+                </div>
+                <div class="b2b-card">
+                    <h3>Финансовая прозрачность</h3>
+                    <p>Работаем строго по договору с фиксированной стоимостью сметы. Полное соответствие требованиям 44-ФЗ / 223-ФЗ, СРО, страхование рисков и предоставление банковских гарантий.</p>
+                </div>
+                <div class="b2b-card">
+                    <h3>Комплектация «Под ключ»</h3>
+                    <p>Налаженные прямые связи с заводами-производителями строительных и отделочных материалов позволяют нам гарантировать лучшую оптовую стоимость снабжения и защиту от дефицита.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button id="openB2bModalBtn" class="btn btn-primary">Получить коммерческое предложение</button>
+            </div>
+        </div>
+    </section>
+
+<section class="portfolio-section" id="portfolio" style="padding: 100px 0; background-color: #121619;">
+        <div class="container">
+            <div class="services-header">
+                <h2 class="metal-text">Выполненные <span class="green-accent">Объекты</span></h2>
+                <p>Примеры реализованных нами проектов с подробными техническими характеристиками.</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                
+                <div class="portfolio-item">
+                    <div class="portfolio-gallery">
+                        <div class="portfolio-badge">Под Ключ</div>
+                        <div class="main-img-holder">
+                            <img src="images/b-1.jpg" alt="ЖК Березняки" class="gallery-main">
+                        </div>
+                        <div class="thumb-grid">
+                            <div class="thumb-img active" onclick="switchGalleryImage(this, 'images/b-1.jpg')">
+                                <img src="images/b-1.jpg" alt="Ракурс 1">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/b-2.jpg')">
+                                <img src="images/b-2.jpg" alt="Ракурс 2">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/b-3.jpg')">
+                                <img src="images/b-3.jpg" alt="Ракурс 3">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/b-4.jpg')">
+                                <img src="images/b-4.jpg" alt="Ракурс 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content" style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3>ЖК Березняки</h3>
+                        <p class="portfolio-desc">Выполнен полный комплекс высококлассной финишной отделки и укладки керамогранита.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-spec">Тип работ: <strong>Под ключ</strong></div>
+                            <div class="meta-spec">Площадь: <strong>200 кв. м</strong></div>
+                            <div class="meta-spec">Срок сдачи: <strong>3.5 месяца</strong></div>
+                            <div class="meta-spec">Бюджет: <strong>12 млн.руб. ₽</strong></div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: auto;" onclick="openCalcWithExactParams('full-outfit', 200)">Смотреть смету</button>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-gallery">
+                        <div class="portfolio-badge">Под Ключ</div>
+                        <div class="main-img-holder">
+                            <img src="images/d-1.jpg" alt="ЖК Доминанта" class="gallery-main">
+                        </div>
+                        <div class="thumb-grid">
+                            <div class="thumb-img active" onclick="switchGalleryImage(this, 'images/d-1.jpg')">
+                                <img src="images/d-1.jpg" alt="Фото 1">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-2.jpg')">
+                                <img src="images/d-2.jpg" alt="Фото 2">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-3.jpg')">
+                                <img src="images/d-3.jpg" alt="Фото 3">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/d-4.jpg')">
+                                <img src="images/d-4.jpg" alt="Фото 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content" style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3>ЖК Доминанта</h3>
+                        <p class="portfolio-desc">Чистовая отделка под ключ по дизайн-проекту. Выполнена идеальная подготовка стен под высококачественную покраску, укладка кварц-винила и керамогранита. Смета и клининг в подарок!</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-spec">Тип работ: <strong>Под ключ</strong></div>
+                            <div class="meta-spec">Площадь: <strong>70 кв. м</strong></div>
+                            <div class="meta-spec">Срок сдачи: <strong>2 месяца</strong></div>
+                            <div class="meta-spec">Бюджет: <strong>2 млн.руб. ₽</strong></div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: auto;" onclick="openCalcWithExactParams('full-outfit', 70)">Смотреть смету</button>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-gallery">
+                        <div class="portfolio-badge">Под ключ</div>
+                        <div class="main-img-holder">
+                            <img src="images/k-1.jpg" alt="ЖК Клаб=Хаус" class="gallery-main">
+                        </div>
+                        <div class="thumb-grid">
+                            <div class="thumb-img active" onclick="switchGalleryImage(this, 'images/k-1.jpg')">
+                                <img src="images/k-1.jpg" alt="Фото 1">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/k-2.jpg')">
+                                <img src="images/k-2.jpg" alt="Фото 2">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/k-3.jpg')">
+                                <img src="images/k-3.jpg" alt="Фото 3">
+                            </div>
+                            <div class="thumb-img" onclick="switchGalleryImage(this, 'images/k-4.jpg')">
+                                <img src="images/k-4.jpg" alt="Фото 4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content" style="padding: 30px; display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3>ЖК Клаб-Хаус</h3>
+                        <p class="portfolio-desc">Выполнен комплекс отделочных и малярных работ в ЖК Клаб-Хаус. Все работы выполнены по дизайн - проекту с использованием высококачественных материалов.</p>
+                        <div class="portfolio-meta">
+                            <div class="meta-spec">Тип работ: <strong>Монтаж и отделка</strong></div>
+                            <div class="meta-spec">Площадь: <strong>120 кв. м</strong></div>
+                            <div class="meta-spec">Срок сдачи: <strong>3 месяца</strong></div>
+                            <div class="meta-spec">Бюджет: <strong>2.5 млн.руб. ₽</strong></div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: auto;" onclick="openCalcWithExactParams('full-outfit', 120)">Смотреть смету</button>
+                    </div>
+                </div>
+
+            </div> </div> 
+</section>
+    <div class="modal" id="calcModal">
+        <div class="calc-box">
+            <span class="close-btn" id="closeCalcBtn">&times;</span>
+            <div class="calc-title metal-text">Расчет стоимости</div>
+
+            <div class="calc-step active" data-step="1">
+                <div class="step-info">Шаг 1 из 3</div>
+                <div class="step-question">Выберите тип объекта или работ:</div>
+                <div class="options-grid">
+                    <div class="option-card selected" data-value="painting">
+                        <span class="option-label">Чистовая отделка под ключ</span>
+                    </div>
+                    <div class="option-card" data-value="full-outfit">
+                        <span class="option-label">Чистовая отделка под ключ без материала</span>
+                    </div>
+                    <div class="option-card" data-value="construction">
+                        <span class="option-label">Строительство здания / дома</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-step" data-step="2">
+                <div class="step-info">Шаг 2 из 3</div>
+                <div class="step-question">Укажите ориентировочную площадь (кв. м):</div>
+                <div class="input-box">
+                    <input type="number" class="calc-input" id="calcArea" value="50" min="1">
+                </div>
+            </div>
+
+            <div class="calc-step" data-step="3">
+                <div class="step-info">Результат расчета</div>
+                <div class="result-box">
+                    <div class="step-question">Предварительная стоимость работ:</div>
+                    <div class="result-price" id="calcResultPrice">0 ₽</div>
+                    <p style="font-size: 14px; color: #a3b8cc; line-height: 1.4;">Расчет является предварительным. Для получения точной сметы и фиксации стоимости свяжитесь с нами.</p>
+                </div>
+            </div>
+
+            <div class="calc-nav">
+                <button class="btn btn-secondary btn-calc" id="prevStepBtn" style="display: none;">Назад</button>
+                <button class="btn btn-primary btn-calc" id="nextStepBtn" style="margin-left: auto;">Далее</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="b2bModal">
+        <div class="calc-box">
+            <span class="close-btn" id="closeB2bModalBtn">&times;</span>
+            <div class="calc-title metal-text">Запрос коммерческого предложения</div>
+            <p style="font-size: 15px; color: #a3b8cc; margin-bottom: 25px; line-height: 1.4;">Заполните форму, и наш главный инженер подготовит предварительное предложение в течение рабочего дня.</p>
+            
+            <form id="b2bForm" action="https://formspree.io/f/mpqnkenb" method="POST" onsubmit="handleB2bSubmit(event)">
+                <div class="input-box">
+                    <label class="input-label">Название организации *</label>
+                    <input type="text" name="Компания" class="calc-input" placeholder="ООО Девелопмент Групп" required>
+                </div>
+                <div class="input-box">
+                    <label class="input-label">Контактное лицо *</label>
+                    <input type="text" name="Имя" class="calc-input" placeholder="Иван Иванович" required>
+                </div>
+                <div class="input-box">
+                    <label class="input-label">Телефон для связи *</label>
+                    <input type="tel" name="Телефон" class="calc-input" placeholder="+7 (999) 000-00-00" required>
+                </div>
+                <div class="input-box">
+                    <label class="input-label">Краткое описание объекта / объем работ</label>
+                    <input type="text" name="Описание объекта" class="calc-input" placeholder="Черновая отделка ЖК, 12 000 кв. м">
+                </div>
+                
+                <div class="calc-nav" style="margin-top: 30px;">
+                    <button type="submit" id="b2bSubmitBtn" class="btn btn-primary btn-calc" style="width: 100%;">Отправить запрос</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // СКРИПТ ДЛЯ ПЕРЕКЛЮЧЕНИЯ ФОТО В ГАЛЕРЕЕ ПОРТФОЛИО
+        function switchGalleryImage(thumbnailElement, imageSrc) {
+            // Находим блок галереи, в котором находится эта миниатюра
+            const gallery = thumbnailElement.closest('.portfolio-gallery');
+            
+            // Находим главное фото внутри этой галереи и меняем путь
+            const mainImg = gallery.querySelector('.gallery-main');
+            mainImg.style.opacity = '0.3'; // Небольшой визуальный эффект угасания при смене
+            
+            setTimeout(() => {
+                mainImg.src = imageSrc;
+                mainImg.style.opacity = '1';
+            }, 100);
+
+            // Убираем класс active у всех миниатюр в этой карточке и добавляем текущей
+            const thumbs = gallery.querySelectorAll('.thumb-img');
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbnailElement.classList.add('active');
+        }
+
+        // ЛОГИКА ОКНА КАЛЬКУЛЯТОРА
+        const modal = document.getElementById('calcModal');
+        const openBtn = document.getElementById('openCalcBtn');
+        const closeBtn = document.getElementById('closeCalcBtn');
+        
+        const steps = document.querySelectorAll('.calc-step');
+        const prevBtn = document.getElementById('prevStepBtn');
+        const nextBtn = document.getElementById('nextStepBtn');
+        const areaInput = document.getElementById('calcArea');
+        
+        let currentStep = 1;
+        let selectedType = 'painting';
+
+        function openModal() {
+            modal.classList.add('active');
+            currentStep = 1;
+            goToStep(1);
+        }
+
+        function openCalcWithType(type) {
+            selectedType = type;
+            const cards = document.querySelectorAll('.option-card');
+            cards.forEach(card => {
+                card.classList.remove('selected');
+                if(card.getAttribute('data-value') === type) {
+                    card.classList.add('selected');
+                }
+            });
+            openModal();
+        }
+
+        function openCalcWithExactParams(type, area) {
+            selectedType = type;
+            areaInput.value = area;
+            
+            const cards = document.querySelectorAll('.option-card');
+            cards.forEach(card => {
+                card.classList.remove('selected');
+                if(card.getAttribute('data-value') === type) card.classList.add('selected');
+            });
+
+            modal.classList.add('active');
+            currentStep = 3; 
+            calculateResult();
+            goToStep(3);
+        }
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+
+        const cards = document.querySelectorAll('.option-card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedType = card.getAttribute('data-value');
+            });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep === 2) {
+                const areaValue = parseFloat(areaInput.value);
+                if (!areaValue || areaValue <= 0) {
+                    alert('Пожалуйста, укажите корректную площадь.');
+                    areaInput.focus();
+                    return;
+                }
+            }
+            if (currentStep < 3) {
+                currentStep++;
+                if (currentStep === 3) calculateResult();
+                goToStep(currentStep);
+            } else {
+                modal.classList.remove('active');
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                goToStep(currentStep);
+            }
+        });
+
+        function goToStep(step) {
+            steps.forEach(s => s.classList.remove('active'));
+            document.querySelector(`.calc-step[data-step="${step}"]`).classList.add('active');
+            
+            if (step === 1) prevBtn.style.display = 'none';
+            else prevBtn.style.display = 'block';
+
+            if (step === 3) nextBtn.innerText = 'Закрыть';
+            else nextBtn.innerText = 'Далее';
+        }
+
+        function calculateResult() {
+            const area = parseFloat(areaInput.value) || 0;
+            let pricePerMeter = 0;
+            if (selectedType === 'painting') pricePerMeter = 27000;
+            else if (selectedType === 'full-outfit') pricePerMeter = 17000;
+            else if (selectedType === 'construction') pricePerMeter = 100000;
+
+            const totalPrice = area * pricePerMeter;
+            document.getElementById('calcResultPrice').innerText = totalPrice.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        // ЛОГИКА ОКНА ДЛЯ ЗАСТРОЙЩИКОВ (B2B)
+        const b2bModal = document.getElementById('b2bModal');
+        const openB2bBtn = document.getElementById('openB2bModalBtn');
+        const closeB2bBtn = document.getElementById('closeB2bModalBtn');
+        const b2bForm = document.getElementById('b2bForm');
+        const b2bSubmitBtn = document.getElementById('b2bSubmitBtn');
+
+        openB2bBtn.addEventListener('click', () => b2bModal.classList.add('active'));
+        closeB2bBtn.addEventListener('click', () => b2bModal.classList.remove('active'));
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+            if (e.target === b2bModal) b2bModal.classList.remove('active');
+        });
+
+        function handleB2bSubmit(event) {
+            event.preventDefault();
+            
+            if(b2bForm.action.includes('https://formspree.io/f/mpqnkenb')) {
+                alert('Ошибка: Пожалуйста, настройте ID формы Formspree в коде сайта перед отправкой.');
+                return;
+            }
+
+            b2bSubmitBtn.innerText = 'Отправка...';
+            b2bSubmitBtn.disabled = true;
+
+            const data = new FormData(b2bForm);
+            
+            fetch(b2bForm.action, {
+                method: b2bForm.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Ваш запрос успешно отправлен! Данные переданы в отдел продаж.');
+                    b2bModal.classList.remove('active');
+                    b2bForm.reset();
+                } else {
+                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.');
+                }
+            }).catch(error => {
+                alert('Произошла сетевая ошибка. Проверьте интернет-соединение.');
+            }).finally(() => {
+                b2bSubmitBtn.innerText = 'Отправить запрос';
+                b2bSubmitBtn.disabled = false;
+            });
+        }
+    </script>
+
+</body>
+</html>
